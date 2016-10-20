@@ -12,23 +12,6 @@ $(document).ready(function(){
     unicornParty = 0;
     dogParty = 0;
 
-    if(userAge != NaN && userAge < 18) {
-      $("#helpBlock1").show();
-      $("#helpBlock1").text("You must be older than 18.");
-    } else if(userAge >= 18) {
-      $("#helpBlock1").hide();
-    } else{
-      $("#helpBlock1").show();
-      $("#helpBlock1").text("You must enter your age as a number.");
-    };
-
-    if(buttonColor != "blue") {
-      $("#helpBlock2").show();
-      $("#helpBlock2").text("Try again!");
-    } else {
-      $("#helpBlock2").hide();
-    };
-
     if(color === "blue") {
       unicornParty = unicornParty + 1;
     } else {
@@ -51,6 +34,38 @@ $(document).ready(function(){
       unicornParty = unicornParty + 1;
     } else {
       dogParty = dogParty + 1;
+    }
+
+    if(userAge != NaN && userAge < 18) {
+      $("#helpBlock1").show();
+      $("#helpBlock1").text("You must be older than 18.");
+    } else if(userAge >= 18) {
+      $("#helpBlock1").hide();
+    } else{
+      $("#helpBlock1").show();
+      $("#helpBlock1").text("You must enter your age as a number.");
+    };
+
+    if(buttonColor != "blue") {
+      $("#helpBlock2").show();
+      $("#helpBlock2").text("Try again!");
+    } else {
+      $("#helpBlock2").hide();
+    };
+
+    if(userAge >= 18 && buttonColor === "blue") {
+      if(unicornParty > dogParty) {
+        $(".results-show").show();
+        $(".party-body").text("Unicorn Party");
+      } else if(unicornParty < dogParty) {
+        $(".results-show").show();
+        $(".party-body").text("Dog Party");
+      } else {
+        $(".results-show").show();
+        $(".party-body").text("Neither, you are a moderate.");
+      }
+    } else {
+      $(".results-show").hide();
     }
 
     event.preventDefault();
